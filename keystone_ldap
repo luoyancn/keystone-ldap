@@ -54,8 +54,8 @@ sed -i "s/ ferredLanguage $ userSMIMECertificate $ userPKCS12 ) )/ ferredLanguag
 sed -i "/# inetOrgPerson/iattributetype ( 2.5.4.66\n\tNAME 'enabled'\n\tDESC 'RFC2256: enabled of a group'\n\tEQUALITY caseIgnoreMatch\n\tSUBSTR caseIgnoreSubstringsMatch\n\tSYNTAX 1.3.6.1.4.1.1466.115.121.1.15\n\tSINGLE-VALUE )" /etc/openldap/schema/inetorgperson.schema
 sed -i "s/\t\tuserSMIMECertificate $ userPKCS12 )/\t\tuserSMIMECertificate $ userPKCS12 $ enabled)/g" /etc/openldap/schema/inetorgperson.schema
 
-chown ldap.ldap /etc/openldap/*
-chown ldap.ldap /var/lib/ldap/*
+chown ldap:ldap /etc/openldap/*
+chown ldap:ldap /var/lib/ldap/*
 
 systemctl enable slapd
 systemctl start slapd
