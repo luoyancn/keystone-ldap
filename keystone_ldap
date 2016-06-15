@@ -68,7 +68,18 @@ o:Awcloud, Inc.
 dc:awcloud
 EOF
 
+cat >/root/add.ldif<<EOF
+dn: ou=Users,dc=awcloud,dc=com
+objectClass: top
+objectClass: organizationalUnit
+
+dn: ou=Groups,dc=awcloud,dc=com
+objectClass: top
+objectClass: organizationalUnit
+EOF
+
 ldapadd -x -W -D "cn=OpenStack,dc=awcloud,dc=com" -f /root/init.ldif
+ldapadd -x -W -D "cn=OpenStack,dc=awcloud,dc=com" -f /root/add.ldif
 
 2.配置keystone
 
@@ -82,10 +93,10 @@ cat >/etc/keystone/domains/keystone.awcloud.conf<<EOF
 [ldap]
 url = ldap://10.7.0.132:389
 use_dumb_member = True
-user_tree_dn = dc=awcloud,dc=com
 user = cn=OpenStack,dc=awcloud,dc=com
 password = awcloud
 
+user_tree_dn = ou=Users,dc=awcloud,dc=com
 user_objectclass = inetOrgPerson
 user_id_attribute = cn
 user_name_attribute = sn
@@ -93,8 +104,8 @@ user_description_attribute = description
 user_mail_attribute = mail
 user_pass_attribute = userPassword
 user_default_project_id_attribute = departmentNumber
-
 user_enabled_default = True
+
 user_allow_create = true
 user_allow_update = true
 user_allow_delete = true
