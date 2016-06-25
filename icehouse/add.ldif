@@ -1,0 +1,19 @@
+dn: ou=Users,dc=awcloud,dc=com
+objectClass: top
+objectClass: organizationalUnit
+
+dn: ou=Projects,dc=awcloud,dc=com
+objectClass: top
+objectClass: organizationalUnit
+
+dn: ou=Roles,dc=awcloud,dc=com
+objectClass: top
+objectClass: organizationalUnit
+
+dn: ou=Groups,dc=awcloud,dc=com
+objectClass: top
+objectClass: organizationalUnit
+
+dn: ou=Domains,dc=awcloud,dc=com
+objectClass: top
+objectClass: organizationalUnit
